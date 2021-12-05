@@ -3,15 +3,20 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'icon_content.dart';
 import 'reusable_container.dart';
 
+
+//Input page
+
 const bottomContainerHeight = 80.0;
-const activeContainerColor = Color(0xFF1D1E33);
-const inactiveContainerColor = Color(0xFF111328);
+const activeContainerColor = Color(0xFF1D1E33); //Picked card color
+const inactiveContainerColor = Color(0xFF111328); //Unpicked card color
 const bottomContainerColor = Color(0xFFEB1555);
 
 class InputPage extends StatefulWidget {
   @override
   _InputPageState createState() => _InputPageState();
 }
+
+//Changes cards color when tabbed
 
 class _InputPageState extends State<InputPage> {
   Color maleContainerColor = inactiveContainerColor;
@@ -49,15 +54,16 @@ class _InputPageState extends State<InputPage> {
             child: Row(
               children: [
                 Expanded(
+                  //Checks whether tabbed or not
                   child: GestureDetector(
                     onTap: () {
                       setState(() {
-                        updateColor(1);
+                        updateColor(1); //updates color
                       });
                     },
-                    child: ReusableContainer(
-                      colour: maleContainerColor,
-                      cardChild: IconContent(
+                    child: ReusableContainer( //Comes from reusable_container fart file
+                    colour: maleContainerColor,
+                      cardChild: IconContent( //Icon of card
                         icon: FontAwesomeIcons.mars,
                         label: 'MALE',
                       ),
@@ -97,10 +103,10 @@ class _InputPageState extends State<InputPage> {
               ),
             ],
           )),
-          Container(
+          Container( //The bottom card
             color: bottomContainerColor,
             margin: EdgeInsets.only(top: 10),
-            width: double.infinity,
+            width: double.infinity, // Card goes to infinity
             height: bottomContainerHeight,
           )
         ],
