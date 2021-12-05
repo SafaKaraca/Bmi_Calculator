@@ -4,7 +4,7 @@ import 'input_page.dart';
 void main() {
   runApp(BMICalculator());
 }
-
+//MainClass
 class BMICalculator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
