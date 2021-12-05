@@ -2,6 +2,4 @@
 
 This is an app that calculates muscle index and i developed it via flutter.
 
-## Getting Started
-
 
