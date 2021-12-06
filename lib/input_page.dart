@@ -24,28 +24,9 @@ class InputPage extends StatefulWidget {
 //Changes cards color when tabbed
 
 class _InputPageState extends State<InputPage> {
-  Color maleContainerColor = inactiveContainerColor;
-  Color femaleContainerColor = inactiveContainerColor;
 
-  //1=male, 2=female
-  void updateColor(Gender selectedGender) {
-    if (selectedGender == Gender.male) {
-      if (maleContainerColor == inactiveContainerColor) {
-        maleContainerColor = activeContainerColor;
-        femaleContainerColor = inactiveContainerColor;
-      } else {
-        maleContainerColor = inactiveContainerColor;
-      }
-    }
-    if (selectedGender == Gender.female) {
-      if (femaleContainerColor == inactiveContainerColor) {
-        femaleContainerColor = activeContainerColor;
-        maleContainerColor = inactiveContainerColor;
-      } else {
-        femaleContainerColor = inactiveContainerColor;
-      }
-    }
-  }
+  Gender? selectedGender;
+
 
   @override
   Widget build(BuildContext context) {
@@ -63,11 +44,11 @@ class _InputPageState extends State<InputPage> {
                   child: GestureDetector(
                     onTap: () {
                       setState(() {
-                        updateColor(Gender.male); //updates color
+                        selectedGender = Gender.male; //updates color
                       });
                     },
                     child: ReusableContainer( //Comes from reusable_container fart file
-                    colour: maleContainerColor,
+                    colour: selectedGender == Gender.male ? activeContainerColor : inactiveContainerColor, //Ternary operator, comes from enum
                       cardChild: IconContent( //Icon of card
                         icon: FontAwesomeIcons.mars,
                         label: 'MALE',
@@ -79,11 +60,11 @@ class _InputPageState extends State<InputPage> {
                   child: GestureDetector(
                     onTap: () {
                       setState(() {
-                        updateColor(Gender.female);
+                        selectedGender = Gender.female;
                       });
                     },
                     child: ReusableContainer(
-                      colour: femaleContainerColor,
+                      colour: selectedGender == Gender.female ? activeContainerColor : inactiveContainerColor, //Ternary operator, comes from enum
                       cardChild: IconContent(
                         icon: FontAwesomeIcons.venus,
                         label: 'FEMALE',
