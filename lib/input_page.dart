@@ -41,34 +41,30 @@ class _InputPageState extends State<InputPage> {
               children: [
                 Expanded(
                   //Checks whether tabbed or not
-                  child: GestureDetector(
-                    onTap: () {
+                  child: ReusableContainer(
+                    onPress: (){
                       setState(() {
-                        selectedGender = Gender.male; //updates color
+                        selectedGender = Gender.male;
                       });
-                    },
-                    child: ReusableContainer( //Comes from reusable_container fart file
-                    colour: selectedGender == Gender.male ? activeContainerColor : inactiveContainerColor, //Ternary operator, comes from enum
-                      cardChild: IconContent( //Icon of card
-                        icon: FontAwesomeIcons.mars,
-                        label: 'MALE',
-                      ),
+                    },//Comes from reusable_container fart file
+                  colour: selectedGender == Gender.male ? activeContainerColor : inactiveContainerColor, //Ternary operator, comes from enum
+                    cardChild: IconContent( //Icon of card
+                      icon: FontAwesomeIcons.mars,
+                      label: 'MALE',
                     ),
                   ),
                 ),
                 Expanded(
-                  child: GestureDetector(
-                    onTap: () {
+                  child: ReusableContainer(
+                    onPress: (){
                       setState(() {
                         selectedGender = Gender.female;
                       });
                     },
-                    child: ReusableContainer(
-                      colour: selectedGender == Gender.female ? activeContainerColor : inactiveContainerColor, //Ternary operator, comes from enum
-                      cardChild: IconContent(
-                        icon: FontAwesomeIcons.venus,
-                        label: 'FEMALE',
-                      ),
+                    colour: selectedGender == Gender.female ? activeContainerColor : inactiveContainerColor, //Ternary operator, comes from enum
+                    cardChild: IconContent(
+                      icon: FontAwesomeIcons.venus,
+                      label: 'FEMALE',
                     ),
                   ),
                 ),
