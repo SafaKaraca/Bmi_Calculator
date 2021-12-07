@@ -2,14 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'icon_content.dart';
 import 'reusable_container.dart';
-
+import 'constants.dart';
 
 //Input page
-
-const bottomContainerHeight = 80.0;
-const activeContainerColor = Color(0xFF1D1E33); //Picked card color
-const inactiveContainerColor = Color(0xFF111328); //Unpicked card color
-const bottomContainerColor = Color(0xFFEB1555);
 
 enum Gender {
   male,
@@ -24,9 +19,7 @@ class InputPage extends StatefulWidget {
 //Changes cards color when tabbed
 
 class _InputPageState extends State<InputPage> {
-
   Gender? selectedGender;
-
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +28,7 @@ class _InputPageState extends State<InputPage> {
         title: Text('BMI CALCULATOR'),
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
             child: Row(
@@ -42,13 +36,18 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   //Checks whether tabbed or not
                   child: ReusableContainer(
-                    onPress: (){
+                    onPress: () {
                       setState(() {
                         selectedGender = Gender.male;
                       });
-                    },//Comes from reusable_container fart file
-                  colour: selectedGender == Gender.male ? activeContainerColor : inactiveContainerColor, //Ternary operator, comes from enum
-                    cardChild: IconContent( //Icon of card
+                    },
+                    //Comes from reusable_container fart file
+                    colour: selectedGender == Gender.male
+                        ? kActiveContainerColor
+                        : kInactiveContainerColor,
+                    //Ternary operator, comes from enum
+                    cardChild: IconContent(
+                      //Icon of card
                       icon: FontAwesomeIcons.mars,
                       label: 'MALE',
                     ),
@@ -56,12 +55,15 @@ class _InputPageState extends State<InputPage> {
                 ),
                 Expanded(
                   child: ReusableContainer(
-                    onPress: (){
+                    onPress: () {
                       setState(() {
                         selectedGender = Gender.female;
                       });
                     },
-                    colour: selectedGender == Gender.female ? activeContainerColor : inactiveContainerColor, //Ternary operator, comes from enum
+                    colour: selectedGender == Gender.female
+                        ? kActiveContainerColor
+                        : kInactiveContainerColor,
+                    //Ternary operator, comes from enum
                     cardChild: IconContent(
                       icon: FontAwesomeIcons.venus,
                       label: 'FEMALE',
@@ -72,24 +74,35 @@ class _InputPageState extends State<InputPage> {
             ),
           ),
           Expanded(
-            child: ReusableContainer(colour: activeContainerColor),
+            child: ReusableContainer(
+              colour: kActiveContainerColor,
+              cardChild: Column(
+                children: [
+                  Text(
+                    'HEIGHT',
+                    style: kLabelTextStyle,
+                  ),
+                ],
+              ),
+            ),
           ),
           Expanded(
               child: Row(
             children: [
               Expanded(
-                child: ReusableContainer(colour: activeContainerColor),
+                child: ReusableContainer(colour: kActiveContainerColor),
               ),
               Expanded(
-                child: ReusableContainer(colour: activeContainerColor),
+                child: ReusableContainer(colour: kActiveContainerColor),
               ),
             ],
           )),
-          Container( //The bottom card
-            color: bottomContainerColor,
+          Container(
+            //The bottom card
+            color: kBottomContainerColor,
             margin: EdgeInsets.only(top: 10),
             width: double.infinity, // Card goes to infinity
-            height: bottomContainerHeight,
+            height: kBottomContainerHeight,
           )
         ],
       ),
