@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'icon_content.dart';
 import 'reusable_container.dart';
 import 'constants.dart';
+import 'results_page.dart';
 
 //Input page
 
@@ -219,13 +220,21 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          Container(
-            child: Center(child: Text('Calculate BMI')),
-            //The bottom card
-            color: kBottomContainerColor,
-            margin: EdgeInsets.only(top: 10),
-            width: double.infinity, // Card goes to infinity
-            height: kBottomContainerHeight,
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ResultsPage()),
+              );
+            },
+            child: Container(
+              child: Center(child: Text('CALCULATE BMI')),
+              //The bottom card
+              color: kBottomContainerColor,
+              margin: EdgeInsets.only(top: 10),
+              width: double.infinity, // Card goes to infinity
+              height: kBottomContainerHeight,
+            ),
           ),
         ],
       ),
